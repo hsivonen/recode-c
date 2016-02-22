@@ -50,3 +50,9 @@ git clone https://github.com/hsivonen/recode-c.git
 cd recode-c
 make
 ```
+
+###5. Run it
+
+```
+./recode_c --help
+```
