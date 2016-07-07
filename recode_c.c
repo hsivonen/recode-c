@@ -74,7 +74,7 @@ convert_via_utf8(Decoder* decoder, Encoder* encoder, FILE* read, FILE* write,
       bool had_replacements;
       size_t decoder_read = decoder_input_end - decoder_input_start;
       size_t decoder_written = UTF8_INTERMEDIATE_BUFFER_SIZE;
-      uint32_t decoder_result = decoder_decode_to_utf8_with_replacement(
+      uint32_t decoder_result = decoder_decode_to_utf8(
         decoder, input_buffer + decoder_input_start, &decoder_read,
         intermediate_buffer, &decoder_written, input_ended, &had_replacements);
       decoder_input_start += decoder_read;
@@ -98,7 +98,7 @@ convert_via_utf8(Decoder* decoder, Encoder* encoder, FILE* read, FILE* write,
         for (;;) {
           size_t encoder_read = decoder_written - encoder_input_start;
           size_t encoder_written = OUTPUT_BUFFER_SIZE;
-          uint32_t encoder_result = encoder_encode_from_utf8_with_replacement(
+          uint32_t encoder_result = encoder_encode_from_utf8(
             encoder, intermediate_buffer + encoder_input_start, &encoder_read,
             output_buffer, &encoder_written, last_output, &had_replacements);
           encoder_input_start += encoder_read;
@@ -145,7 +145,7 @@ convert_via_utf16(Decoder* decoder, Encoder* encoder, FILE* read, FILE* write,
       bool had_replacements;
       size_t decoder_read = decoder_input_end - decoder_input_start;
       size_t decoder_written = UTF16_INTERMEDIATE_BUFFER_SIZE;
-      uint32_t decoder_result = decoder_decode_to_utf16_with_replacement(
+      uint32_t decoder_result = decoder_decode_to_utf16(
         decoder, input_buffer + decoder_input_start, &decoder_read,
         intermediate_buffer, &decoder_written, input_ended, &had_replacements);
       decoder_input_start += decoder_read;
@@ -160,7 +160,7 @@ convert_via_utf16(Decoder* decoder, Encoder* encoder, FILE* read, FILE* write,
       for (;;) {
         size_t encoder_read = decoder_written - encoder_input_start;
         size_t encoder_written = OUTPUT_BUFFER_SIZE;
-        uint32_t encoder_result = encoder_encode_from_utf16_with_replacement(
+        uint32_t encoder_result = encoder_encode_from_utf16(
           encoder, intermediate_buffer + encoder_input_start, &encoder_read,
           output_buffer, &encoder_written, last_output, &had_replacements);
         encoder_input_start += encoder_read;
