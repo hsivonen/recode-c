@@ -12,6 +12,8 @@
 #include <getopt.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stddef.h>
+#include <uchar.h>
 
 #include "encoding_rs.h"
 

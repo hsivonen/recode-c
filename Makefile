@@ -7,29 +7,28 @@
 # option. This file may not be copied, modified, or distributed
 # except according to those terms.
 
-CFLAGS = -Wall -Wextra -Werror -O3 -std=c11 -I../encoding_rs/target/include/ -I../encoding_rs/include/
+CFLAGS = -Wall -Wextra -Werror -O3 -std=c11
 LDFLAGS = -Wl,--gc-sections -ldl -lpthread -lgcc_s -lrt -lc -lm
 
-recode_c: recode_c.o ../encoding_rs/target/release/libencoding_rs.a
+recode_c: recode_c.o rustglue/target/release/librustglue.a
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-recode_c.o: recode_c.c ../encoding_rs/target/include/encoding_rs.h ../encoding_rs/include/encoding_rs_statics.h
+recode_c.o: encoding_rs.h encoding_rs_statics.h recode_c.c
 
-../encoding_rs/target/release/libencoding_rs.a: cargo
-
-../encoding_rs/target/include/encoding_rs.h: cargo
+rustglue/target/release/librustglue.a: cargo
 
 .PHONY: cargo
 cargo:
-	cd ../encoding_rs; cargo build --release
+	cd rustglue/; cargo build --release
 
 .PHONY: all
 all: recode_c
 
 .PHONY: fmt
 fmt:
-	clang-format-3.7 --style=mozilla -i *.c
+	clang-format-3.8 --style=mozilla -i *.c
 
 .PHONY: clean
 clean:
 	rm recode_c
+	cd rustglue/; cargo clean

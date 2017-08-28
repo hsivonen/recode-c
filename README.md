@@ -1,6 +1,6 @@
-# recode-c
+# recode_c
 
-recode-c is a test/sample app that's written in C and uses
+recode_c is a test/sample app that's written in C and uses
 [encoding_rs](https://github.com/hsivonen/encoding_rs).
 
 It expects encoding_rs to have been checked out to an adjacent directory.
@@ -14,7 +14,7 @@ Please see the file named COPYRIGHT.
 Git, GNU Make and a version of GCC recent enough to accept `-std=c11` are
 assumed to be already installed.
 
-###0. Install Rust (including Cargo) if you haven't already
+### 0. Install Rust (including Cargo) if you haven't already
 
 See [rustup.rs](https://rustup.rs/). For
 Linux and OS X, this means:
@@ -22,36 +22,20 @@ Linux and OS X, this means:
 curl https://sh.rustup.rs -sSf | sh
 ```
 
-###1. Clone encoding_rs
+### 1. Clone recode_c
 
 ```
-git clone https://github.com/hsivonen/encoding_rs.git
+git clone https://github.com/hsivonen/recode_c.git
 ```
 
-###2. Enable staticlib support for encoding_rs
-
-Edit `encoding_rs/Cargo.toml` and uncomment the line
-```
-# crate-type = ["rlib", "staticlib"]
-```
-
-(The line is commented out due to a
-[rustfmt bug](https://github.com/rust-lang-nursery/rustfmt/issues/828).)
-
-###3. Clone recode-c
+### 2. Build recode_c
 
 ```
-git clone https://github.com/hsivonen/recode-c.git
-```
-
-###4. Build recode-c
-
-```
-cd recode-c
+cd recode_c
 make
 ```
 
-###5. Run it
+### 3. Run it
 
 ```
 ./recode_c --help
